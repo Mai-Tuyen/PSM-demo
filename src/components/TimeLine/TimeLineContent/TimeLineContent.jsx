@@ -1,6 +1,7 @@
 import React from "react";
+import './TimeLineContent.less';
 const TimeLineContent = () => {
-  return (<div> TimeLineContentttt</div>);
+  return (<div className="timeline-content"> TimeLineContentttt</div>);
 };
 
 export default TimeLineContent;

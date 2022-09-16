@@ -1,16 +1,81 @@
-@import '~antd/dist/antd.less';
+@import "~antd/dist/antd.less";
+
+.before-description (@bgColor) {
+    content: "";
+    width: 40px;
+    height: 16px;
+    background-color: @bgColor;
+    display: inline-block;
+    vertical-align: -25%;
+    margin-right: 8px;
+}
+
+.normal-text {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+}
+
 .timeline {
-    &__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        &__right{
-            &__text {
-                margin-right: 16px;
-                font-size: 14px;
-                font-weight: 400;
-                font-family: 'Roboto', sans-serif;
-            }
-        }
+  background-color: #e0e0e0;
+  min-height: 100vh;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__right {
+      &__text {
+        margin-right: 16px;
+        .normal-text;
+      }
     }
+  }
+  &__description {
+    margin-top: 20px;
+    &__item {
+      .normal-text;
+      margin-right: 40px;
+      line-height: 16px;
+      &--pending {
+        &::before {
+          .before-description(#d1dad9);
+        }
+      }
+      &--overdue {
+        &::before {
+          .before-description(#d4686a);
+        }
+      }
+      &--ontrack {
+        &::before {
+          .before-description(#35cc83);
+        }
+      }
+      &--offtrack {
+        &::before {
+          .before-description(#ffc069);
+        }
+      }
+    }
+  }
+  &__footer {
+    width: 100%;
+    &__button {
+    float: right;
+    &--cancel {
+        margin-right: 8px;
+    }
+    }
+  }
+}
+
+.sortby__icon {
+  filter: invert(0%) sepia(5%) saturate(0%) hue-rotate(292deg) brightness(97%)
+    contrast(104%);
+}
+.viewType {
+  .ant-segmented-item-selected {
+    background-color: #fff1f0;
+    color: #bc1c24;
+  }
 }
