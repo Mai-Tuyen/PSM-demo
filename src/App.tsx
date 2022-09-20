@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.less';
 import TimeLine from './pages/TimeLine';
 function App() {

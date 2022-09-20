@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CaretDownOutlined } from "@ant-design/icons";
-import { Tree } from "antd";
+import { Tree, TreeProps } from "antd";
 import "./SideMenuTimeLine.less";
 import _ from "lodash";
 const SideMenuTimeLine = () => {
@@ -78,14 +78,14 @@ const SideMenuTimeLine = () => {
       ],
     },
   ]);
-  const onSelect = (selectedKeys, info) => {
+  const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
   };
 
-  const loop = async (data, key) => {
+  const loop: any = async (data: any, key: string) => {
     let listResult;
     for (let i = 0; i < data.length; i++) {
-      if (data[i].key === key) {
+      if (data[i]?.key === key) {
         return data[i]?.children;
       } else if (data[i].children) {
         listResult = await loop(data[i].children, key);
@@ -96,7 +96,7 @@ const SideMenuTimeLine = () => {
     }
     return listResult;
   };
-  const onDropTree = async (info) => {
+  const onDropTree = async (info : any) => {
     let listData = _.cloneDeep(treeData);
     const dropKey = info.node.key;
     const dragKey = info.dragNode.key;
@@ -107,15 +107,15 @@ const SideMenuTimeLine = () => {
     } else {
       arrayParentDrop = listData;
     }
-    let dragIndex = arrayParentDrop.findIndex((x) => x.key === dragKey);
-    let dragObject = arrayParentDrop.find((x) => x.key === dragKey);
+    let dragIndex = arrayParentDrop.findIndex((x: any) => x.key === dragKey);
+    let dragObject = arrayParentDrop.find((x: any) => x.key === dragKey);
     arrayParentDrop.splice(dragIndex, 1);
-    let dropIndex = arrayParentDrop.findIndex((x) => x.key === dropKey);
+    let dropIndex = arrayParentDrop.findIndex((x: any) => x.key === dropKey);
     arrayParentDrop.splice(dropIndex + 1, 0, dragObject);
     setTreeData(listData);
   };
 
-  const onAllowDropTree = (info) => {
+  const onAllowDropTree = (info: any) => {
     try {
       if (!info?.dragNode.parentKey) {
         return false;
@@ -129,7 +129,7 @@ const SideMenuTimeLine = () => {
     }
   };
 
-  const getFirstLeafKey = (listData) => {
+  const getFirstLeafKey = (listData : any) => {
       let listKey = [listData[0].key] ;
     while (listData[0]?.children) {
       listData = listData[0].children
