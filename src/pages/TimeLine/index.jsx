@@ -6,7 +6,6 @@ import "./index.less";
 const { RangePicker } = DatePicker;
 
 const TimeLine = () => {
-  const [viewType, setViewType] = useState();
   let timeLineHeader = (
     <div className="timeline__header">
       <Button type="primary">Scheduling</Button>
